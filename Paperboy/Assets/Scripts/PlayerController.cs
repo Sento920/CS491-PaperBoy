@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rb;
     float direct;
     public float oomph;
-    public GameObject Throwable;
+    public float powerOfThrow;
+    public GameObject newsPaper;
+    public GameObject throwPoint;
     GameObject Paper;
 	// Use this for initialization
 	void Start () {
@@ -18,15 +20,21 @@ public class PlayerController : MonoBehaviour {
         direct = Input.GetAxis("Vertical");
         if (Input.GetMouseButtonDown(0) == true)
         {
-            Paper = (GameObject) Instantiate(Throwable,new Vector3(rb.position.x, rb.position.y, rb.position.z),Quaternion.identity);
+            Paper = (GameObject) Instantiate(newsPaper,throwPoint.transform.position,this.rb.rotation);
             Paper.transform.SetParent(this.transform);
             print("Thrown");
+            Paper.GetComponent<Rigidbody>().AddForce(new Vector3(powerOfThrow * this.rb.rotation.x,powerOfThrow* this.rb.rotation.y, powerOfThrow* this.rb.rotation.z));
         }
 	}
 
     void FixedUpdate()
     {
         rb.AddForce(new Vector3(0,0,direct * oomph));
+    }
+
+    public float getPower(float pow)
+    {
+        return this.powerOfThrow = pow;
     }
 
 }
