@@ -9,21 +9,22 @@ public class PlayerController : MonoBehaviour {
     public float powerOfThrow;
     public GameObject newsPaper;
     public GameObject throwPoint;
+    public GameObject powerbar;
     GameObject Paper;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        throwPoint = GameObject.FindGameObjectWithTag("MainCamera");
 	}
 	
 	// Update is called once per frame
 	void Update () {
         direct = Input.GetAxis("Vertical");
-        if (Input.GetMouseButtonDown(0) == true)
+        if (Input.GetMouseButtonUp(0) == true)
         {
-            Paper = (GameObject) Instantiate(newsPaper,throwPoint.transform.position,this.rb.rotation);
-            Paper.transform.SetParent(this.transform);
-            print("Thrown");
-            Paper.GetComponent<Rigidbody>().AddForce(new Vector3(powerOfThrow * this.rb.rotation.x,powerOfThrow* this.rb.rotation.y, powerOfThrow));
+            Paper = (GameObject) Instantiate(newsPaper,throwPoint.transform.position, throwPoint.transform.rotation);
+            Paper.GetComponent<Rigidbody>().AddForce(throwPoint.transform.forward * powerOfThrow);
+            Paper.transform.SetParent(Paper.transform);
         }
 	}
 
