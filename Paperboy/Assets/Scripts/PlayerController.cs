@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
             Paper = (GameObject) Instantiate(newsPaper,throwPoint.transform.position,this.rb.rotation);
             Paper.transform.SetParent(this.transform);
             print("Thrown");
-            Paper.GetComponent<Rigidbody>().AddForce(new Vector3(powerOfThrow * this.rb.rotation.x,powerOfThrow* this.rb.rotation.y, powerOfThrow* this.rb.rotation.z));
+            Paper.GetComponent<Rigidbody>().AddForce(new Vector3(powerOfThrow * this.rb.rotation.x,powerOfThrow* this.rb.rotation.y, powerOfThrow));
         }
 	}
 
