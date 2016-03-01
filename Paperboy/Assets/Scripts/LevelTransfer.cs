@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LevelTransfer : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public string ToLevel;
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        SceneManager.LoadScene(ToLevel);
+    }
+
+    public void Transfer()
+    {
+        SceneManager.LoadScene("tutorial Level");
+    }
 }
