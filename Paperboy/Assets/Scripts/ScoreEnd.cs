@@ -13,7 +13,10 @@ public class ScoreEnd : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        sc.getScoreValue(scoreValue);
+        if (other.tag == "Paper")
+        {
+            sc.getScoreValue(scoreValue);
+        }
     }
 
 }
